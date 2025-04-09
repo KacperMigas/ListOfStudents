@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentsList.Views.AddClassPage"
+             Title="List of Classes">
+    <ContentPage.Resources>
+        <StyleSheet Source="../Resources/Styles/AddClass.css" />
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout>
+            <Label 
+                StyleId="EnterClassNameLabel"
+                Text="Enter class name:"
+                   />
+            <Editor
+                StyleId="EnterClassNameInput"
+                Placeholder="Class name..."
+                x:Name="ClassName_Text"
+            />
+            <Button
+                x:Name="addClassBtn"
+                StyleId="addClassBtn"
+                Text="Add Class"
+                Clicked="addClass_Clicked"/>
+            <CollectionView x:Name="ClassListCollection"
+                        ItemsSource="{Binding ClassContainer}"
+                        SelectionMode="Single"
+                        SelectionChanged="onClassSelectedClicked">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="6"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout StyleId="classView">
+                            <Label StyleId="classNameLabel" TextColor="black"/>
+                            <Label Text="{Binding Name}" TextColor="black"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
